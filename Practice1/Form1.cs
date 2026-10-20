@@ -24,6 +24,7 @@ namespace Practice1
             {
 
                 lblResult.Text = op.Add(fNum, sNum).ToString();
+                lblResult.Text = "HELLO";
             }
 
            else if (txtOperator.Text == "-")
