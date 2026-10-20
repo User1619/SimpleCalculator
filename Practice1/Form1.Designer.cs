@@ -212,6 +212,8 @@
             Margin = new Padding(4);
             Name = "PraticeCalcu";
             Text = "Form1";
+            Load += PraticeCalcu_Load;
+            KeyPress += PraticeCalcu_KeyPress;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

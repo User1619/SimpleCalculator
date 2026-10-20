@@ -30,7 +30,7 @@ namespace Practice1
 
         public double Div(double num1, double num2)
         {
-            if (num2 == 0)
+            if (num1 == 0 && num2 == 0 || num2 == 0 || num1 == 0)
             {
                 Console.WriteLine("Cannot be divided");
             }

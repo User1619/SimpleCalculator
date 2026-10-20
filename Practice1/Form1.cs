@@ -5,6 +5,7 @@ namespace Practice1
         public PraticeCalcu()
         {
             InitializeComponent();
+
         }
 
         private void txtFirstNumber_TextChanged(object sender, EventArgs e)
@@ -12,48 +13,65 @@ namespace Practice1
 
         }
 
-        private void btnCalculate_Click(object sender, EventArgs e)
+        public void btnCalculate_Click(object sender, EventArgs e)
         {
             Operation op = new Operation();
 
-
-            double fNum = Convert.ToDouble(txtFirstNumber.Text);
-            double sNum = Convert.ToDouble(txtSecondNumber.Text);
-
-            if (txtOperator.Text == "+")
+            if (txtFirstNumber.Text == "" || txtSecondNumber.Text == "")
             {
-
-                lblResult.Text = op.Add(fNum, sNum).ToString();
-                lblResult.Text = "ADDED";
+                MessageBox.Show("Please enter the number");
             }
 
-           else if (txtOperator.Text == "-")
+            else if (txtOperator.Text == "")
             {
-                if (fNum <= sNum)
+                MessageBox.Show("Please enter the operator");
+            }
+
+            else
+            {
+
+                double fNum = Convert.ToDouble(txtFirstNumber.Text);
+                double sNum = Convert.ToDouble(txtSecondNumber.Text);
+
+                if (txtOperator.Text == "+")
                 {
-                    MessageBox.Show("Invalid");
-                    txtFirstNumber.Clear();
-                    txtSecondNumber.Clear();
-                    txtOperator.Clear();
+
+                    lblResult.Text = op.Add(fNum, sNum).ToString();
+
                 }
 
-                else 
+                else if (txtOperator.Text == "-")
                 {
-                    lblResult.Text = op.Sub(fNum, sNum).ToString();
+                    if (fNum <= sNum)
+                    {
+                        MessageBox.Show("Invalid");
+                        txtFirstNumber.Clear();
+                        txtSecondNumber.Clear();
+                        txtOperator.Clear();
+                    }
+
+                    else
+                    {
+                        lblResult.Text = op.Sub(fNum, sNum).ToString();
+                    }
+
+                }
+                else if (txtOperator.Text == "*")
+                {
+                    lblResult.Text = op.Mul(fNum, sNum).ToString();
+                }
+
+                else if (txtOperator.Text == "/")
+                {
+
+                    if (fNum == 0 && sNum == 0 || sNum == 0 || fNum == 0)
+                    {
+                        MessageBox.Show("Cannot be divided");
+                    }
+                    lblResult.Text = op.Div(fNum, sNum).ToString();
                 }
 
             }
-            else if (txtOperator.Text == "*")
-            {
-                lblResult.Text = op.Mul(fNum, sNum).ToString();
-            }
-
-            else if (txtOperator.Text == "/")
-            {
-                lblResult.Text = op.Div(fNum, sNum).ToString();
-            }
-
-          
 
         }
 
@@ -126,6 +144,24 @@ namespace Practice1
             txtFirstNumber.Clear();
             txtSecondNumber.Clear();
             txtOperator.Clear();
+        }
+
+        private void PraticeCalcu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Down)
+            {
+                btnCalculate.PerformClick();
+            }
+        }
+
+        private void PraticeCalcu_KeyDown(object sender, KeyEventArgs e)
+        {
+        
+        }
+
+        private void PraticeCalcu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
